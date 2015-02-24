@@ -49,12 +49,12 @@ The details in this guide have been very heavily inspired by several existing st
 <a name="tabs_or_spaces"/>
 ### Tabs or Spaces?
 
-Use **spaces only**, with **2 spaces** per indentation level. Never mix tabs and spaces.
+Use **spaces only**, with **4 spaces** per indentation level. Never mix tabs and spaces.
 
 <a name="maximum_line_length"/>
 ### Maximum Line Length
 
-Limit all lines to a maximum of 79 characters.
+Limit all lines to a maximum of 79 characters. (Warn otherwise)
 
 <a name="blank_lines"/>
 ### Blank Lines
@@ -236,11 +236,11 @@ For constants, use all uppercase with underscores:
 CONSTANT_LIKE_THIS
 ```
 
-Methods and variables that are intended to be "private" should begin with a leading underscore:
+<!--Methods and variables that are intended to be "private" should begin with a leading underscore:-->
 
-```coffeescript
-_privateMethod: ->
-```
+<!--```coffeescript-->
+<!--_privateMethod: ->-->
+<!--```-->
 
 <a name="functions"/>
 ## Functions
@@ -261,14 +261,14 @@ bar = -> # Yes
 bar = () -> # No
 ```
 
-In cases where method calls are being chained and the code does not fit on a single line, each call should be placed on a separate line and indented by one level (i.e., two spaces), with a leading `.`.
+In cases where method calls are being chained and the code does not fit on a single line, each call should be placed on a separate line and indented by one level (i.e., four spaces), with a leading `.`.
 
 ```coffeescript
 [1..3]
-  .map((x) -> x * x)
-  .concat([10..12])
-  .filter((x) -> x < 11)
-  .reduce((x, y) -> x + y)
+    .map((x) -> x * x)
+    .concat([10..12])
+    .filter((x) -> x < 11)
+    .reduce((x, y) -> x + y)
 ```
 
 When calling functions, choose to omit or include parentheses in such a way that optimizes for readability. Keeping in mind that "readability" can be subjective, the following examples demonstrate cases where parentheses have been omitted or included in a manner that the community deems to be optimal:
@@ -310,7 +310,7 @@ In cases where method calls are being chained, some adopters of this style prefe
 (($ '#selektor').addClass 'klass').hide() # All calls
 ```
 
-The function grouping style is not recommended. However, **if the function grouping style is adopted for a particular project, be consistent with its usage.**
+The function grouping style is *not recommended*.
 
 <a name="strings"/>
 ## Strings
@@ -384,7 +384,9 @@ To iterate over the keys and values of objects:
 
 ```coffeescript
 object = one: 1, two: 2
-alert("#{key} = #{value}") for key, value of object
+
+for key, value of object
+   alert "#{key} = #{value}"
 ```
 
 <a name="extending_native_objects"/>
@@ -462,13 +464,6 @@ Prefer `@property` over `this.property`.
 ```coffeescript
 return @property # Yes
 return this.property # No
-```
-
-However, avoid the use of **standalone** `@`:
-
-```coffeescript
-return this # Yes
-return @ # No
 ```
 
 Avoid `return` where not required, unless the explicit return increases clarity.
