@@ -310,7 +310,7 @@ In cases where method calls are being chained, some adopters of this style prefe
 (($ '#selektor').addClass 'klass').hide() # All calls
 ```
 
-The function grouping style is *not recommended*.
+The function grouping style is **not recommended**.
 
 <a name="strings"/>
 ## Strings
