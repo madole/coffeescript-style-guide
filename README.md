@@ -54,7 +54,7 @@ Use **spaces only**, with **4 spaces** per indentation level. Never mix tabs and
 <a name="maximum_line_length"/>
 ### Maximum Line Length
 
-Limit all lines to a maximum of 79 characters. (Warn otherwise)
+Aim to limit all lines to a maximum of 79 characters. *Not enforced by coffeelint*
 
 <a name="blank_lines"/>
 ### Blank Lines
@@ -236,11 +236,12 @@ For constants, use all uppercase with underscores:
 CONSTANT_LIKE_THIS
 ```
 
-<!--Methods and variables that are intended to be "private" should begin with a leading underscore:-->
+**We don't currently do this but it could be something to look into**
+Methods and variables that are intended to be "private" should begin with a leading underscore:
 
-<!--```coffeescript-->
-<!--_privateMethod: ->-->
-<!--```-->
+```coffeescript
+_privateMethod: ->
+```
 
 <a name="functions"/>
 ## Functions
@@ -475,6 +476,33 @@ console.log args... # Yes
 
 (a, b, c, rest...) -> # Yes
 ```
+<a name="modules" />
+#Modules
+For modules we should aim to use the [revealing module pattern](https://carldanley.com/js-revealing-module-pattern/)
+
+```coffeescript
+thing = 'thing'
+
+doOneThing = ->
+   console.log "Doing one #{thing}"
+   
+doTwoThings = (thingOne, thingTwo) ->
+   console.log "Doing #{thingOne} and #{thingTwo}"
+   
+module.exports = {doOneThing, doTwoThings}
+```
+as opposed to: 
+```coffeescript
+thing = 'thing'
+
+module.exports =
+   doOneThing: ->
+      console.log "Doing one #{thing}"
+   doTwoThings: (thingOne, thingTwo) ->
+      console.log "Doing #{thingOne} and #{thingTwo}"
+```
+
+The second option creates anonymous functions which make it difficult to stack trace when debugging. 
 
 [coffeescript]: http://jashkenas.github.com/coffee-script/
 [coffeescript-issue-425]: https://github.com/jashkenas/coffee-script/issues/425
