@@ -477,7 +477,7 @@ console.log args... # Yes
 (a, b, c, rest...) -> # Yes
 ```
 <a name="modules" />
-#Modules
+##Modules
 For modules we should aim to use the [revealing module pattern](https://carldanley.com/js-revealing-module-pattern/)
 
 ```coffeescript
@@ -503,6 +503,26 @@ module.exports =
 ```
 
 The second option creates anonymous functions which make it difficult to stack trace when debugging. 
+
+
+## Passing objects to function calls
+
+Option 1: 
+```coffeescript
+doSomething opt1, {class: 'pressOn', html: '<div>Press</div>'}
+```
+Option 2: 
+```coffeescript
+doSomething(opt1, {class: 'pressOn', html: '<div>Press</div>'})
+```
+Option 3:
+```coffeescript
+doSomething opt1, 
+   class: 'pressOn'
+   html: '<div>Press</div>'
+```
+We prefer option 3 as it looks clean and makes use of the meaningful whitespace and removes the need for unnecessary round & curly backets and commas
+
 
 [coffeescript]: http://jashkenas.github.com/coffee-script/
 [coffeescript-issue-425]: https://github.com/jashkenas/coffee-script/issues/425
