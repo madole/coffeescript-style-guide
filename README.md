@@ -502,8 +502,16 @@ module.exports =
       console.log "Doing #{thingOne} and #{thingTwo}"
 ```
 
-The second option creates anonymous functions which make it difficult to stack trace when debugging. 
+The second option creates the need to use "this" if you want doOneThing to be able to call doTwoThings. This then leads to the practice for *self = this*, for example, to cache the context to access doTwoThings from inside a setTimeout in doOneThing. We can avoid this completely by making them *private* functions and exporting them in an object. 
+The stacktrace now looks like 
 
+*Error: at Object.doOneThing* 
+
+instead of 
+
+*Error: at Object.module.exports.doOneThing*
+
+Either are fine, but the first is less verbose and therefore more concise. 
 
 ## Passing objects to function calls
 
