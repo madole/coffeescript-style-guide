@@ -532,6 +532,20 @@ doSomething opt1,
 We prefer option 3 as it looks clean and makes use of the meaningful whitespace and removes the need for unnecessary round & curly backets and commas
 
 
+## Returning functions
+
+Returning a function from another should expliciting use the `return` keyword.
+
+```coffeescript
+# no
+foo = ->
+    -> 'bar'
+
+#yes
+foo = ->
+    return -> 'bar'
+```
+
 [coffeescript]: http://jashkenas.github.com/coffee-script/
 [coffeescript-issue-425]: https://github.com/jashkenas/coffee-script/issues/425
 [spine-js]: http://spinejs.com/
